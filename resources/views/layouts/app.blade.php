@@ -14,9 +14,9 @@
 </head>
 <body>
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white">
-            <a class="navbar-brand" href="/{{Session::get('locale')}}">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <img alt="logo" width="100%" src="{{ url('imgs/icons/logo.png') }}">
-                
+
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

@@ -4,11 +4,11 @@
 @endsection
 @section('content')
 		<div class="languages-block row pl-4 pt-4">			
-			<a href="/ru" class="language btn btn-link pl-4">
+			<a href="setlocale/ru" class="language btn btn-link pl-4">
 				<img class='pb-1' src="imgs/icons/rus.png">
 				<span class='pt-1'>Русский</span>
 			</a>
-			<a href="/en" class="btn btn-link">
+			<a href="setlocale/en" class="btn btn-link">
 				<img class='pb-1' src="imgs/icons/uk.png">
 				<span class='pt-1'>English</span>
 			</a>

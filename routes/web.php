@@ -15,7 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/{lang}', 'MainPageController');
+Route::get('setlocale/{locale}', function ($locale) {
+    if (in_array($locale, \Config::get('app.locales'))) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+});
+
+Route::get('/', 'MainPageController');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
@@ -32,7 +39,7 @@ Route::group(['prefix' => 'user/', 'middleware' => 'can:update,user'], function 
 });
 
 Route::patch('teacher/update/{user}', 'TeacherController')->middleware('can:update,user');
-Route::get('/search', 'SearchController@index');
+Route::get('search', 'SearchController@index');
 Route::get('/search/find', 'SearchController@find');
 
 Route::prefix('lesson/')->group(function () {

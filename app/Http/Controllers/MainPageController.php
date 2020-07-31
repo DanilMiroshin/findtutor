@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Session;
 class MainPageController extends Controller
 {
 
-    public function __invoke($lang)
+    public function __invoke()
     {
-        Session::put('locale', $lang);
-
         $teachers = User::whereHas('status', function (Builder $query) {
             $query->where('isApproved', 1);
         })

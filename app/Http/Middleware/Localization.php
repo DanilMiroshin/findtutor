@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App;
 use Closure;
-use Illuminate\Support\Facades\Session;
+use Config;
+use Session;
 
 class Localization
 {
@@ -16,13 +18,11 @@ class Localization
      */
     public function handle($request, Closure $next)
     {
-        $locale = 'ru';
+        $raw_locale = $request->session()->get('locale');
 
-        if (Session::has('locale')) {
-            $locale = Session::get('locale');
-        }
-        
-        app()->setLocale($locale);
+        $locale = in_array($raw_locale, Config::get('app.locales')) ? $raw_locale : Config::get('app.locale');
+
+        App::setLocale($locale);
         return $next($request);
     }
 }
