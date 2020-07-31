@@ -130,8 +130,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'document' => [
+            'required' => 'You did not attach the document',
         ],
     ],
 

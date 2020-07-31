@@ -8,7 +8,7 @@
     <div class="row justify-content-center pt-4">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Регистрация</div>
+                <div class="card-header">@lang('views.register.title')</div>
                 <div class="card-body"> 
                     @if ($errors ->any())
                         <div class="alert alert-danger" role="alert">
@@ -20,20 +20,20 @@
                     <form id='teacher-form' method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Выберете кто вы?</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">@lang('views.register.role.title')</label>
                             <div class="col-md-6 pt-2">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" value ='teacher' id="teacher-radio" onclick="showInput()" required>
-                                    <label class="form-check-label">Я учитель</label>
+                                    <label class="form-check-label">@lang('views.register.role.teacher')</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" value ='student' id="user-radio" onclick="showInput()" required> 
-                                    <label class="form-check-label">Я ученик</label>
+                                    <label class="form-check-label">@lang('views.register.role.student')</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Ваше имя</label>
+                            <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.first_name')</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="name" autofocus>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Ваша фамилия</label>
+                            <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.last_name')</label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required>
@@ -58,12 +58,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Отчество</label>
+                            <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.patronymic')</label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('patronymic') is-invalid @enderror" name="patronymic" value="{{ old('patronymic') }}">
                                 <small class="text-muted">
-                                    Необязательное поле.
+                                    @lang('validation.attributes.optional_field')
                                 </small>
                                 @error('patronymic')
                                     <span class="invalid-feedback" role="alert">
@@ -73,12 +73,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">skype</label>
+                            <label class="col-md-4 col-form-label text-md-right">Skype</label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('skype') is-invalid @enderror" name="skype" value="{{ old('skype') }}">
                                 <small class="text-muted">
-                                    Необязательное поле.
+                                    @lang('validation.attributes.optional_field')
                                 </small>
                                 @error('skype')
                                     <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Ваш возраст</label>
+                            <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.age')</label>
 
                             <div class="col-md-6">
                                 <input type="number" min ='15' class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Почта</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.email')</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -114,7 +114,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Пароль</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.password')</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -128,7 +128,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Повторите пароль</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.repeat_password')</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -136,7 +136,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Выберите вашу фотографию</label>
+                            <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.avatar')</label>
 
                             <div class="col-md-6">
                                 <input type="file" class="form-control-file pt-3" name='avatar'>
@@ -144,12 +144,9 @@
                         </div>
                         <div id='hidden-div'>
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">Предмет</label>
+                                <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.subject')</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" value="{{ old('subject') }}">
-                                    <small class="text-muted">
-                                        Введите предметы, которые вы преподаете
-                                    </small>
                                     @error('subject')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -158,18 +155,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">Прикрепите фотографию документа.</label>
+                                <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.document')</label>
 
                                 <div class="col-md-6">
                                     <input type="file" class="form-control-file pt-3" name='document'>
                                     <small class="text-muted">
-                                         Документ должен доказывать, что вы имеете образование преподавателя. Ваш аккаунт будет подтвержден после проверки администратором этого документа.
+                                         @lang('views.settings.doc_desc')
                                 </small>
                                 </div>
                                 
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">Цена за урок в рублях</label>
+                                <label class="col-md-4 col-form-label text-md-right">@lang('validation.attributes.price')</label>
 
                                 <div class="col-md-6">
                                     <input type="number" min='100' class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}">
@@ -184,7 +181,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Создать аккаунт
+                                    @lang('views.register.create')
                                 </button>
                             </div>
                         </div>

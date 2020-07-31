@@ -6,7 +6,7 @@
 @section('content')
         <div class='container pl-5 pt-4 pr-4' id='container'>
             <div class='settings-header'>
-                <h3 class='pl-5'>@lang('messages.settings')</h3>
+                <h3 class='pl-5'>@lang('views.settings.title')</h3>
             </div>
             <div class='settings-body pl-5 pt-4'>
                 @if (\Session::has('success'))
@@ -232,7 +232,7 @@
                 </div>
                 <div class ='line'></div>
                 @if ($user->role->role == 'teacher')
-                    <h4>@lang('messages.teacher_settings')</h4>
+                    <h4>@lang('views.settings.teacher_block.title')</h4>
                     <div class="form-row">
                         <div class="form-row">
                             <div class="form-group mx-sm-6 mb-2 pt-2 pl-4">
@@ -256,7 +256,7 @@
                             </div>
                         @if (empty($user->getTeacherInfo->path_to_document))
                            <div class="form-group mx-sm-6 mb-2 pt-2 ml-4 pl-4">
-                                <label class='settings-label'>@lang('messages.doc_message')</label>
+                                <label class='settings-label'>@lang('validation.custom.document.required')</label>
                             </div>
                         @else
                             <div class="document form-group mx-sm-6 mb-2 pt-2 ml-4 pl-4" data-toggle="modal" data-target="#documentModal">
@@ -296,7 +296,7 @@
                                     <div class="form-group mx-sm-6 mb-2 pt-2 ml-4 pl-4">
                                         <input type="file" class="form-control-file" name='document'>
                                         <small class="text-muted">
-                                            @lang('messages.document_desc')
+                                            @lang('views.settings.doc_desc')
                                         </small>
                                     </div>
                                 </div>
@@ -308,11 +308,11 @@
                     </div>
                     <div class ='line'></div>
                     @if($user->getLessonsForTeacher->isNotEmpty())
-                        <h4>@lang('messages.students_block_title')</h4>
+                        <h4>@lang('views.settings.teacher_block.students')</h4>
                         @if ($user->unreadNotifications->isNotEmpty())
                             <form method="POST" action="/lesson/markNotifications">
                                 @csrf
-                                <button class="btn btn-link">@lang('messages.mark_as_read')</button>
+                                <button class="btn btn-link">@lang('views.settings.mark_as_read')</button>
                             </form>
                         @endif 
                         <div id="accordion">
@@ -334,7 +334,7 @@
                                     </div>
                                     <div id="collapseThree{{$lesson->id}}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                         <div class="card-body">
-                                            <h4>@lang('messages.contacts')</h4>                              
+                                            <h4>@lang('views.settings.contacts')</h4>                              
                                             <div class="form-row">
                                                 <div class="form-group mx-sm-6 mb-2 pt-2 pl-4">
                                                     <label class='settings-label'>Skype</label>
@@ -353,27 +353,27 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group mx-sm-6 mb-2 pt-2 pl-4">
-                                                    <label class='settings-label'>@lang('messages.message')</label>
+                                                    <label class='settings-label'>@lang('views.settings.message.title')</label>
                                                 </div>
                                                 <form method="POST" action="/lesson/update/{{$lesson->id}}">
                                                     @csrf
                                                     <div class="col-xs-12 mb-2 pt-2 ml-4 pl-4">
-                                                        <input id='message' type="text" required class="new-user-data" placeholder="@lang('messages.message.desc')" name="message">
+                                                        <input id='message' type="text" required class="new-user-data" placeholder="@lang('views.settings.message.example')" name="message">
                                                     </div>
                                                     <div class='ml-5'>
-                                                        <button class="submit-button" type="submit">@lang('messages.message.send')</button>
+                                                        <button class="submit-button" type="submit">@lang('views.settings.message.send')</button>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group mx-sm-6 mb-2 pt-2 pl-4">
-                                                    <label class='settings-label'>@lang('messages.cancel_lesson')</label>
+                                                    <label class='settings-label'>@lang('views.settings.teacher_block.cancel')</label>
                                                 </div>
                                                 <div class="form-group mx-sm-6 mb-2 pt-2 ml-4 pl-4">
                                                     <form method="POST" action="/lesson/destroy/{{ $lesson->id }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">@lang('messages.cancel')</button>
+                                                        <button type="submit" class="btn btn-danger">@lang('views.settings.delete')</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -383,16 +383,16 @@
                             @endforeach
                         </div>
                     @else
-                        <h4>@lang('messages.for_students')</h4>
+                        <h4>@lang('messages.for_teachers')</h4>
                     @endif
                     <div class ='line'></div>
                 @endif
                 @if($user->getLessonsForStudent->isNotEmpty())
-                    <h4>@lang('messages.teachers_block_title')</h4>
+                    <h4>@lang('views.settings.student_block.title')</h4>
                     @if ($user->unreadNotifications->isNotEmpty())
                         <form method="POST" action="/lesson/markNotifications">
                             @csrf
-                            <button class="btn btn-link">@lang('messages.mark_as_read')</button>
+                            <button class="btn btn-link">@lang('views.settings.mark_as_read')</button>
                         </form>
                     @endif           
                     <div id="accordion">                        
@@ -414,7 +414,7 @@
                                 </div>
                                 <div id="collapseThree{{$lesson->id}}" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                     <div class="card-body">
-                                        <h4>@lang('messages.contacts')</h4>                              
+                                        <h4>@lang('views.settings.contacts')</h4>                              
                                         <div class="form-row">
                                             <div class="form-group mx-sm-6 mb-2 pt-2 pl-4">
                                                 <label class='settings-label'>Skype</label>
@@ -450,7 +450,7 @@
                                         <div class="form-row">
                                             <div class="form-group mx-sm-6 mb-2 pt-2 pl-4">
                                                 <label class='settings-label'>
-                                                    @lang('messages.message_for_student')
+                                                    @lang('views.settings.message.for_student')
                                                 </label>
                                             </div>
                                             <div class="form-group mx-sm-6 mb-2 pt-2 ml-4 pl-4">
@@ -460,13 +460,13 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group mx-sm-6 mb-2 pt-2 pl-4">
-                                                <label class='settings-label'>@lang('messages.cancel_teach')</label>
+                                                <label class='settings-label'>@lang('views.settings.student_block.cancel')</label>
                                             </div>
                                             <div class="form-group mx-sm-6 mb-2 pt-2 ml-4 pl-4">
                                                 <form method="POST" action="/lesson/destroy/{{$lesson->id}}`">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">@lang('messages.cancel')</button>
+                                                    <button type="submit" class="btn btn-danger">@lang('views.settings.delete')</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -476,19 +476,19 @@
                         @endforeach                     
                     </div>  
                 @else 
-                    <h4>@lang('messages.for_teachers')</h4>
+                    <h4>@lang('messages.for_students')</h4>
                 @endif                  
                 <div class ='line'></div>
                 <div class='form-row'>
                     <div class="form-group mx-sm-3 mb-2 pt-2">
-                        <label class='settings-label'>@lang('messages.delete_account')</label>
+                        <label class='settings-label'>@lang('views.settings.deletion.title')</label>
                     </div>
                 </div>
                 <div class='form-row pl-5'>
-                    <label class='settings-label'>@lang('messages.delete_desc')</label>
+                    <label class='settings-label'>@lang('views.settings.deletion.description')</label>
                 </div>
                 <div class='form-row mx-sm-2 mb-2 pt-2 pb-4'>
-                    <button class="submit-button" data-toggle="modal" data-target="#deleteModal">@lang('messages.delete')</button>
+                    <button class="submit-button" data-toggle="modal" data-target="#deleteModal">@lang('views.settings.delete')</button>
                 </div>              
             </div>
         </div>
@@ -497,20 +497,20 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@lang('messages.delete_account')</h5>
+                    <h5 class="modal-title">@lang('views.settings.deletion.title')</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    @lang('messages.sure')
+                    @lang('views.settings.deletion.confirm')
                 </div>
                 <form method='POST' action='/user/delete/{{$user->id}}'>
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer">
-                        <button type="submit" class="delete-button">@lang('messages.delete')</button>
-                        <button type="button" class="close-button" data-dismiss="modal">@lang('messages.close')</button>
+                        <button type="submit" class="delete-button">@lang('views.settings.delete')</button>
+                        <button type="button" class="close-button" data-dismiss="modal">@lang('views.settings.close')</button>
                     </div>
                 </form>
             </div>
@@ -527,7 +527,7 @@
                     @endif                   
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="close-button" data-dismiss="modal">@lang('messages.close')</button>
+                    <button type="button" class="close-button" data-dismiss="modal">@lang('views.settings.close')</button>
                 </div>
             </div>
         </div>

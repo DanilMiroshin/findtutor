@@ -7,20 +7,21 @@
         <div class="row justify-content-center">
             <div class="col-md-8 pt-4">
                 <div class="card">
-                    <div class="card-header">Подтвердите вашу почту</div>
+                    <div class="card-header">@lang('views.verify.title')</div>
 
                     <div class="card-body">
                         @if (session('resent'))
                             <div class="alert alert-success" role="alert">
-                                Проверьте вашу почту
+                                @lang('views.verify.check')
                             </div>
                         @endif
 
-                        Проверьте вашу почту
-                        Если вы не получили сообщение,
+                        @lang('views.verify.not_receive')
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">Нажмите сюда, чтобы запросить новое сообщение</button>.
+                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">
+                                @lang('views.verify.send_new')
+                            </button>.
                         </form>
                     </div>
                 </div>

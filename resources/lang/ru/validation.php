@@ -138,8 +138,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'document' => [
+            'required' => 'Вы не прикрепили документ',
         ],
     ],
 
@@ -202,8 +202,9 @@ return [
         'app'                   => 'Подтверждение',
         'new_password'          => 'Новый пароль',
         'old_password'          => 'Старый пароль',
-        'repeat_password'       => 'Изменить пароль',
+        'repeat_password'       => 'Повторите пароль',
         'change'                => 'Изменить',
         'save'                  => 'Сохранить',
+        'optional_field'        => 'Необязательное поле',
     ],
 ];

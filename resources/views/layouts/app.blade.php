@@ -6,7 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@lang('messages.title')</title>
+    <title>@lang('layout.title')</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -14,8 +14,9 @@
 </head>
 <body>
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white">
-            <a class="navbar-brand" href="{{ url('/')}}">
+            <a class="navbar-brand" href="/{{Session::get('locale')}}">
                 <img alt="logo" width="100%" src="{{ url('imgs/icons/logo.png') }}">
+                
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,23 +24,23 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class='nav-link' href="{{ url('/search') }}">@lang('messages.search')</a>
+                        <a class='nav-link' href="{{ url('/search') }}">@lang('layout.navbar.search')</a>
                     </li>
                     @guest
                         <li class="nav-item">
-                            <a class='nav-link' href="{{ url('/login') }}">@lang('messages.login')</a>
+                            <a class='nav-link' href="{{ url('/login') }}">@lang('layout.navbar.login')</a>
                         </li>
                         <li class="nav-item">
-                            <a class='nav-link' href="{{ url('/register') }}">@lang('messages.nav_signup')</a>
+                            <a class='nav-link' href="{{ url('/register') }}">@lang('layout.navbar.signup')</a>
                         </li>
                     @else
                         @if (Auth::user()->role->isAdmin == 1)
                             <li class="nav-item">
-                                <a class='nav-link' href="{{ url('/admin') }}">@lang('messages.admin')</a>
+                                <a class='nav-link' href="{{ url('/admin') }}">@lang('layout.navbar.admin')</a>
                             </li>
                         @endif  
                         <li class="nav-item">
-                            <a class='nav-link' href="{{ url('user/'. Auth::id() .'/settings') }}">@lang('messages.settings')
+                            <a class='nav-link' href="{{ url('user/'. Auth::id() .'/settings') }}">@lang('layout.navbar.settings')
                                 @if (Auth::user()->unreadNotifications->isNotEmpty())
                                     <span class="badge badge-warning">!</span>
                                 @endif
@@ -49,7 +50,7 @@
                         <a class='nav-link' onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();"
                                             href="{{ route('logout') }}">
-                                            {{ Auth::user()->first_name }}  (@lang('messages.logout'))
+                                            {{ Auth::user()->first_name }}  (@lang('layout.navbar.logout'))
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -67,16 +68,10 @@
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li class='ul-header'>@lang('messages.footer_subjects')</li>
+                        <li class='ul-header'>@lang('layout.footer.subjects')</li>
                         <li><a href="{{ URL('/search/find/?subject=Математика&range=1500') }}">Математика</a></li>
                         <li><a href="{{ URL('/search/find/?subject=Химия&range=1500') }}">Химия</a></li>
                         <li><a href="{{ URL('/search/find/?subject=Русский+язык&range=1500') }}">Русский язык</a></li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul>
-                        <li class='ul-header'>@lang('messages.footer_job_title')</li>
-                        <li><a href="{{ route('register') }}">@lang('messages.footer_job_start')</a></li>
                     </ul>
                 </div>
                 <div class="col">
@@ -92,8 +87,18 @@
                         </a>           
                     </div>
                     <div class="row">
-                    <span class='ftr-copyright'>Copyright © 2020 Find tutor. @lang('messages.footer_rights')</span>
-                    <span class='ftr-credits'>Icons from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></span>
+                        <span class='ftr-copyright'>
+                            Copyright © 2020 Find tutor. 
+                            @lang('layout.footer.rights')
+                        </span><br>
+                    </div>
+                    <div class="row">
+                        <span class='ftr-credits'>
+                                Icons from 
+                            <a href="https://www.flaticon.com/" title="Flaticon"> 
+                                www.flaticon.com
+                            </a>
+                        </span>
                     </div>
                 </div>
             </div>

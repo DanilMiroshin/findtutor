@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="table-responsive p-4">
-        <h1 class='display-4'>@lang('messages.users')</h1>
+        <h1 class='display-4'>@lang('views.admin.title')</h1>
         <table class="table table-bordered table-striped table-hover datatable datatable-User">
             <thead>
                 <tr class="thead-dark">
@@ -40,7 +40,7 @@
                         <td>
                             <img src="{{ $user->path_to_avatar }}" class="img-thumbnail" alt="user-img">
                         </td>
-                        @if (empty($user->getTeacherInfo))
+                        @if (empty($user->getTeacherInfo->path_to_document))
                            <td>-</td>
                         @else
                             <td class='document-td' data-toggle="modal" data-target="#documentModal" data-image-src ='{{ $user->getTeacherInfo->path_to_document }}'>
@@ -51,22 +51,22 @@
                             <form method='POST' action='admin/approved/{{ $user->id }}'>
                                 @csrf
                                 @method('PATCH')
-                                    <button type="submit" class="btn btn-link">@lang('messages.app')</button>
+                                    <button type="submit" class="btn btn-link">@lang('views.admin.actions.confirm')</button>
                             </form>                      
                             <form method='POST' action='admin/block/{{ $user->id }}'>
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn btn-link">@lang('messages.block')</button>
+                                <button type="submit" class="btn btn-link">@lang('views.admin.actions.block')</button>
                             </form>                
                             <form method='POST' action='admin/unApproved/{{ $user->id }}'>
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn btn-link">@lang('messages.UnApp')</button>
+                                <button type="submit" class="btn btn-link">@lang('views.admin.actions.un_conf')</button>
                            </form>                        
                             <form method='POST' action='admin/unBlock/{{ $user->id }}'>
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn btn-link">@lang('messages.UnBlock')</button>
+                                <button type="submit" class="btn btn-link">@lang('views.admin.actions.un_block')</button>
                            </form>
                         </td>                        
                     </tr>

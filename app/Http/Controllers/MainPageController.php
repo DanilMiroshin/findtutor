@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\User;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Session;
 
 class MainPageController extends Controller
 {
 
-    public function __invoke()
+    public function __invoke($lang)
     {
+        Session::put('locale', $lang);
+
         $teachers = User::whereHas('status', function (Builder $query) {
             $query->where('isApproved', 1);
         })

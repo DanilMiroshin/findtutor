@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'MainPageController');
+Route::get('/{lang}', 'MainPageController');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
